@@ -153,13 +153,13 @@ class Matrix {
         return matrix;
     }
 
-    // void EMultiply(float** vector){
-    //     for (int i = 0; i < rows; i++){
-    //         for (int j = 0; j < cols; j++) {
-    //             matrix[i][j] *= vector[i][j];
-    //         }
-    //     }
-    // }
+    void MMultiply(float** vector){
+        for (int i = 0; i < rows; i++){
+            for (int j = 0; j < cols; j++) {
+                matrix[i][j] *= vector[i][j];
+            }
+        }
+    }
 
     // float** DotProduct(float** matrix_n){
     //     float** new_matrix = new float*[rows];
@@ -253,6 +253,17 @@ class Matrix {
                 matrix[i][j] = func(matrix[i][j]);
             }
         }
+    }
+
+    static float** map(float** matrix, int rows, int cols, std::function<float(float)> func) {
+        float** new_matrix = new float*[rows];
+        for (int i = 0; i < rows; i++) {
+            new_matrix[i] = new float[cols];
+            for (int j = 0; j < cols; j++) {
+                new_matrix[i][j] = func(matrix[i][j]);
+            }
+        }
+        return new_matrix;
     }
 
     static void Print(float** matrix, int rows, int cols) {
