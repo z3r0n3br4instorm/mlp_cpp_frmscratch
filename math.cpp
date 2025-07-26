@@ -132,6 +132,17 @@ class Matrix {
         }
     }
 
+    static float** Subtract(float** matrix_m, float** matrix_n, int rows, int cols) {
+        float** result = new float*[rows];
+        for (int i = 0; i < rows; i++) {
+            result[i] = new float[cols];
+            for (int j = 0; j < cols; j++) {
+                result[i][j] = matrix_m[i][j] - matrix_n[i][j];
+            }
+        }
+        return result;
+    }
+
     static float** EAdd(float** matrix, float** vector, int rows, int cols){
         for (int i = 0; i < rows; i++){
             for (int j = 0; j < cols; j++) {

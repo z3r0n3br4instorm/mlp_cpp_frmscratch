@@ -61,7 +61,22 @@ public:
 
     }
 
-    void train(float* inputs,float* answer) {
-        //
+    void train(float* inputs, float* targets, float* outputs, int input_size, int output_size) {
+        // Convert arrays to column vectors
+        float** output = Matrix::fromArray(outputs, output_size);
+        float** target = Matrix::fromArray(targets, output_size);
+
+        float** output_err = Matrix::Subtract(target, output, 1, output_size);
+
+        float** hidden_errors = Matrix::MMultiply(Matrix::Transpose(weights_ho.GetData(), weights_ho.GetRows(), weights_ho.GetCols()), output_err, weights_ho.GetCols(), 1, 1, output_size);
+
+        // std::cout << "Output: \n";
+        // Matrix::Print(output, 1, output_size);
+        // std::cout << "Target: \n";
+        // Matrix::Print(target, 1, output_size);
+        // std::cout << "Hidden Error:  \n";
+        // Matrix::Print(hidden_errors, 1, weights_ho.GetCols());
+
+
     }
 };
